@@ -1,0 +1,6 @@
+venv/
+.buildozer/
+android_version/
+bin/
+__pycache__/
+*.pyc
