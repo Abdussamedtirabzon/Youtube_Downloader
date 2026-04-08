@@ -22,7 +22,7 @@ jobs:
 
     - name: Build with PyInstaller
       run: |
-        pyinstaller --onefile --windowed indirici.py
+        pyinstaller --onefile --windowed mp4_indirici.py
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
