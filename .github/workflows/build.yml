@@ -1,0 +1,31 @@
+name: Build EXE
+
+on: [push] # Kodunu her push ettiğinde çalışır
+
+jobs:
+  build:
+    runs-on: windows-latest # İşte sihir burada, Windows sunucusu kullanıyoruz
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11' # Kullandığın versiyonu seçebilirsin
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pyinstaller pytube  # Buraya kullandığın kütüphaneleri ekle
+
+    - name: Build with PyInstaller
+      run: |
+        pyinstaller --onefile --windowed indirici.py
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: Windows-Executable
+        path: dist/*.exe
